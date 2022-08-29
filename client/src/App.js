@@ -1,15 +1,24 @@
-import { useEffect } from "react";
+import React from 'react';
+import LoginButton from './components/LoginButton';
+import LogoutButton from './components/LogoutButton';
+import Profile from './components/Profile';
+import Advice from './components/Advice';
+import { useAuth0 } from '@auth0/auth0-react';
+import Editor from './components/Editor';
 
 const App = () => {
+  const { isLoading } = useAuth0();
 
-  useEffect(() => {
-    fetch("/hi")
-    .then(res => res.json())
-    .then(data => console.log(data));
-  }, [])
+  if (isLoading) return <div>Loading...</div>
 
   return (
-    <h1>Hello World</h1>
+    <>
+      <LoginButton />
+      <LogoutButton />
+      <Profile />
+      <Advice/>
+      <Editor/>
+    </>
   );
 }
 
