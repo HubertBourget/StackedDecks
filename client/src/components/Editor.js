@@ -3,40 +3,54 @@ import { default as React, useEffect, useRef } from 'react';
 import EditorJS from '@editorjs/editorjs';
 import Header from '@editorjs/header';
 import Timeline from '../tools/timeline/tool';
+import { useLocation } from 'react-router-dom';
+import queryString from 'query-string';
 
-const DEFAULT_INITIAL_DATA = () => {
-    return {
-        "time": new Date().getTime(),
-        "blocks": [
-        {
-            "type": "header",
-            "data": {
-            "text": "This is my awesome editor!",
-            "level": 1
-            }
-        },
-        ]
-    }
-    }
+const EDITTOR_HOLDER_ID = 'editorjs';
 
-    const EDITTOR_HOLDER_ID = 'editorjs';
 
-    const Editor = (props) => {
+// const DEFAULT_INITIAL_DATA = () => {
+//     return {
+//         "time": new Date().getTime(),
+//         "blocks": [
+//         {
+//             "type": "header",
+//             "data": {
+//             "text": "This is my awesome editor!",
+//             "level": 1
+//             }
+//         },
+//         ]
+//     }
+//     }
+
+    const Editor = () => {
     const ejInstance = useRef();
-    const [editorData, setEditorData] = React.useState(DEFAULT_INITIAL_DATA);
+    const [editorData, setEditorData] = React.useState(null);
+    const location = useLocation();
+    const query = queryString.parse(location.search);
+    const courseId = query.courseId;
 
-    // This will run only once
     useEffect(() => {
         if (!ejInstance.current) {
-        initEditor();
+        initEditor(editorData);
         }
         return () => {
         ejInstance.current.destroy();
         ejInstance.current = null;
         }
-    }, []);
+    }, [editorData]);
 
-    const initEditor = () => {
+    useEffect(() => { 
+        fetch(`/api/get-course/${courseId}`)
+        .then(res => res.json())
+        .then(data => {
+            setEditorData(data.result)
+            console.log(data); //this line to be removed soon
+        })
+        }, []);
+        
+    const initEditor = (editorData) => {
         const editor = new EditorJS({
         holder: EDITTOR_HOLDER_ID,
         logLevel: "ERROR",
@@ -45,9 +59,11 @@ const DEFAULT_INITIAL_DATA = () => {
             ejInstance.current = editor;
         },
         onChange: async () => {
-            let content = await this.editorjs.saver.save();
-            // Put your logic here to save this data to your DB
-            setEditorData(content);
+            editor.save().then((outputData) => {
+                setEditorData(outputData)
+                }).catch((error) => {
+                    console.log('Saving failed: ', error)
+                });
         },
         autofocus: true,
         tools: { 
@@ -55,13 +71,43 @@ const DEFAULT_INITIAL_DATA = () => {
             timeline: Timeline,
         }, 
         });
-    };
+    }
 
     return (
-        <React.Fragment>
+        <>
         <div id={EDITTOR_HOLDER_ID}> </div>
-        </React.Fragment>
+        </>
     );
 }
 
 export default Editor;
+
+
+
+
+//this was the DEFAULT_INITIA_DATA object:
+// {
+//     "time": new Date().getTime(),
+//     "blocks": [
+//     {
+//         "type": "header",
+//         "data": {
+//         "text": "How is your course named?",
+//         "level": 1
+//         }
+//     },
+//     ]
+// }
+
+
+
+
+//premiere tentative fetch initial data
+// const [courseData, setCourseData] = useState('');
+// let query = useQuery();
+// fetch(`/api/get-course/${query.get("_id")}`)
+// .then(res => res.json())
+// .then(data => {
+//     setCourseData(data.result)
+//     console.log(data);
+// })
