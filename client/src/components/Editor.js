@@ -5,8 +5,9 @@ import Header from '@editorjs/header';
 import Timeline from '../tools/timeline/tool';
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
+import _ from "lodash"; // cool kids know _ is low-dash ;D
 
-const EDITTOR_HOLDER_ID = 'editorjs';
+const EDITOR_HOLDER_ID = 'editorjs';
 
 
 // const DEFAULT_INITIAL_DATA = () => {
@@ -26,20 +27,33 @@ const EDITTOR_HOLDER_ID = 'editorjs';
 
     const Editor = () => {
     const ejInstance = useRef();
-    const [editorData, setEditorData] = React.useState(null);
+    const [editorData, setEditorData] = React.useState("");
     const location = useLocation();
     const query = queryString.parse(location.search);
     const courseId = query.courseId;
+    
+    // //this will only run once
+    // useEffect(() => {
+    //     var deepCopy = _.cloneDeep(editorData);
+    //     if (!ejInstance.current) {
+    //     initEditor(deepCopy);
+    //     }
+    //     return () => {
+    //     ejInstance.current.destroy();
+    //     ejInstance.current = null;
+    //     }
+    // }, []); //editorData
+    // console.log(editorData);
 
-    useEffect(() => {
+    const initTheEditor = (data) => {
         if (!ejInstance.current) {
-        initEditor(editorData);
-        }
-        return () => {
-        ejInstance.current.destroy();
-        ejInstance.current = null;
-        }
-    }, [editorData]);
+            initEditor(data);
+            }
+            return () => {
+            ejInstance.current.destroy();
+            ejInstance.current = null;
+            }
+    }
 
     useEffect(() => { 
         fetch(`/api/get-course/${courseId}`)
@@ -47,14 +61,15 @@ const EDITTOR_HOLDER_ID = 'editorjs';
         .then(data => {
             setEditorData(data.result)
             console.log(data); //this line to be removed soon
+            initTheEditor(data.result)
         })
         }, []);
         
-    const initEditor = (editorData) => {
+    const initEditor = (data) => {
         const editor = new EditorJS({
-        holder: EDITTOR_HOLDER_ID,
+        holder: EDITOR_HOLDER_ID,
         logLevel: "ERROR",
-        data: editorData,
+        data: data,
         onReady: () => {
             ejInstance.current = editor;
         },
@@ -75,7 +90,7 @@ const EDITTOR_HOLDER_ID = 'editorjs';
 
     return (
         <>
-        <div id={EDITTOR_HOLDER_ID}> </div>
+        <div id={EDITOR_HOLDER_ID}> </div>
         </>
     );
 }
