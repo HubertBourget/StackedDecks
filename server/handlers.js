@@ -87,9 +87,30 @@ const getCourse = async (req, res) => {
     }
 }
 
+const patchCourse = async (req, res) => {
+    const _id = req.params.courseId;
+    const newValues = { $set: { "courseData.courseContent": req.body.editorData } };
+    const client = new MongoClient(MONGO_URI, options);
+
+    try {
+    const query = {"_id": _id};
+    await client.connect();
+    console.log("connected!");
+    const db = client.db('db-name');
+    const result = await db.collection("courses").updateOne(query, newValues);
+    console.log(result);
+    res.status(201).json({ status: 201, message: "The course was updated." });
+    } catch (e) {
+    res.status(500).json({ status: 500, message: e.message });
+    }
+    client.close();
+    console.log("disconnected");
+}
+
 module.exports = {
     postCourse,
     getUsers,
     getCourses,
-    getCourse
+    getCourse,
+    patchCourse
 };

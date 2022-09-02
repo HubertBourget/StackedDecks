@@ -6,7 +6,8 @@ const {
     postCourse,
     getUsers,
     getCourses,
-    getCourse
+    getCourse,
+    patchCourse
 } = require("./handlers");
 
 express()
@@ -15,5 +16,6 @@ express()
     .get("/api/get-courses/:courseOwner", getCourses)
     .get("/api/get-course/:courseId", getCourse)
     .post("/api/post-course", postCourse)
+    .patch("/api/patch-course/:courseId", patchCourse)
 
-    .listen(8001);
+    .listen(8000);

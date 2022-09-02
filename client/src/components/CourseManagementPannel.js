@@ -21,7 +21,6 @@ const CourseManagementPannel = () => {
     };
 
     const createNewCourse = () => {
-
         fetch("/api/post-course", {
             method: "POST",
             headers: {
