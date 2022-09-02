@@ -22,8 +22,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <GlobalStyles />
-      <Header  />
       <Main>
+        <Header/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cmp" element={<CourseManagementPannel />} />
@@ -35,7 +35,8 @@ const App = () => {
   );
 }
 const Main = styled.div`
-
+  height:99vh;
+  background-image: linear-gradient(to bottom right, #000000, #292929);
 `;
 
 export default App;

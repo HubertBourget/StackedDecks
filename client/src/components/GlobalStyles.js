@@ -14,4 +14,8 @@ body {
     margin: 0;
     background-color: #DCE6F2;
 }
+button{
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
 `;
