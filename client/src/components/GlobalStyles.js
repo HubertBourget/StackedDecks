@@ -14,6 +14,14 @@ body {
     margin: 0;
     background-color: #DCE6F2;
 }
+root{
+    padding: 0;
+    margin: 0;
+    background-color: #DCE6F2;
+}
+h2{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+} //'Courier New', Courier, monospace;
 button{
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;

@@ -35,7 +35,7 @@ const App = () => {
   );
 }
 const Main = styled.div`
-  height:99vh;
+  height:200vh;
   background-image: linear-gradient(to bottom right, #000000, #292929);
 `;
 
