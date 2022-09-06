@@ -1,10 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled from 'styled-components'
-import LoginButton from './components/LoginButton';
-import LogoutButton from './components/LogoutButton';
-import Profile from './components/Profile';
-import Advice from './components/Advice';
 import { useAuth0 } from '@auth0/auth0-react';
 import Editor from './components/Editor';
 import GlobalStyles from './components/GlobalStyles';
@@ -12,6 +8,8 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Footer from './components/Footer';
 import CourseManagementPannel from './components/CourseManagementPannel';
+import Catalogue from "./components/Catalogue";
+import Study from "./components/Study"
 
 
 const App = () => {
@@ -28,9 +26,11 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/cmp" element={<CourseManagementPannel />} />
           <Route path="/editor/:courseId" element={<Editor />} />
+          <Route path="/catalogue" element={<Catalogue/>}/>
+          <Route path="/study/:courseId" element={<Study/>}/>
         </Routes>
       </Main>
-      {/* <Footer /> */}
+      <Footer />
     </BrowserRouter>
   );
 }

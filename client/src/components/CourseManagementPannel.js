@@ -6,6 +6,7 @@ const CourseManagementPannel = () => {
 
     const { user, isAuthenticated } = useAuth0();
     const [courseName, setCourseName] = useState('');
+    const [courseCategory, setCourseCategory] = useState('');
     const [courseData, setCourseData] = useState([]);
 
     useEffect(() => {
@@ -16,8 +17,12 @@ const CourseManagementPannel = () => {
             })
     }, [])
 
-    const handleChange = event => {
+    const handleChangeName = event => {
         setCourseName(event.target.value);
+    };
+    
+    const handleChangeCategory = event => {
+        setCourseCategory(event.target.value);
     };
 
     const createNewCourse = () => {
@@ -30,6 +35,7 @@ const CourseManagementPannel = () => {
             body: JSON.stringify({
                 "courseOwner": user.email,
                 "courseName" : courseName,
+                "courseCategory": courseCategory,
                 "courseContent": 
                 {
                     "time": new Date().getTime(),
@@ -47,7 +53,11 @@ const CourseManagementPannel = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                fetch(`/api/get-courses/${user.email}`)
+                .then(res => res.json())
+                .then(data => {
+                    setCourseData(data.result)
+            })
             })
     }
 
@@ -60,8 +70,16 @@ const CourseManagementPannel = () => {
         type="text"
         id="courseName"
         name="courseName"
-        onChange={handleChange}
+        onChange={handleChangeName}
         value={courseName}
+        />
+        <input
+        placeholder="Course Category (optional)"
+        type="text"
+        id="courseCategory"
+        name="courseCategory"
+        onChange={handleChangeCategory}
+        value={courseCategory}
         />
         <button onClick={createNewCourse}>Create a New Course</button>
             <div>

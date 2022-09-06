@@ -6,7 +6,7 @@ import Profile from "./Profile";
 const Header =() => {
     return(
         <ButtonContainerDiv>
-            <Logo src={require("../img/StackedDecks_Logo.png")}></Logo>
+            <a href={"/"}><Logo src={require("../img/StackedDecks_Logo.png")}></Logo></a>
             <StackedDecksTxt src={require("../img/StackedDecks_txt.png")}></StackedDecksTxt> 
             <StackedDecksTxt2 src={require("../img/StackedDecks_txt2.png")}></StackedDecksTxt2>
             <Profile></Profile>

@@ -47,7 +47,7 @@ const getUsers = async (req, res) => {
     }
 }
 
-const getCourses = async (req, res) => {
+const getCoursesFromOwner = async (req, res) => {
     const client =  new MongoClient(MONGO_URI, options);
     try{
         const courseOwner = req.params.courseOwner;
@@ -60,6 +60,26 @@ const getCourses = async (req, res) => {
         res.status(200).json({ status: 200, result: result })
         // ---- Client disconnected ---- // 
         client.close();
+    }
+    catch (e){
+        // else if error -->
+        res.status(400).json({ status: 400, message: e.message })
+    }
+}
+
+const getAllCourses = async (req, res) => {
+        const client =  new MongoClient(MONGO_URI, options);
+    try{
+        // ---- Client connected ---- //
+        client.connect();
+        console.log("connected")
+        
+        const db = client.db('db-name');
+        const result = await db.collection("courses").find().toArray(); 
+        res.status(200).json({ status: 200, result: result })
+        // ---- Client disconnected ---- // 
+        client.close();
+        console.log("disconnected")
     }
     catch (e){
         // else if error -->
@@ -110,7 +130,8 @@ const patchCourse = async (req, res) => {
 module.exports = {
     postCourse,
     getUsers,
-    getCourses,
+    getCoursesFromOwner,
+    getAllCourses,
     getCourse,
     patchCourse
 };

@@ -1,17 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { default as React, useEffect, useRef } from 'react';
+import { default as React, useEffect, useRef, useState } from 'react';
 import EditorJS from '@editorjs/editorjs';
 import Header from '@editorjs/header';
-import Timeline from '../tools/timeline/tool';
+import Embed from '@editorjs/embed';
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
-import _ from "lodash"; // cool kids know _ is low-dash ;D
+import styled from 'styled-components';
 
 const EDITOR_HOLDER_ID = 'editorjs';
 
     const Editor = () => {
     const ejInstance = useRef();
-    const [editorData, setEditorData] = React.useState("");
+    const [editorData, setEditorData] = useState("");
     const location = useLocation();
     const query = queryString.parse(location.search);
     const courseId = query.courseId;
@@ -54,7 +54,6 @@ const EDITOR_HOLDER_ID = 'editorjs';
         autofocus: true,
         tools: { 
             header: Header, 
-            timeline: Timeline,
         }, 
         });
     }
@@ -84,6 +83,7 @@ const EDITOR_HOLDER_ID = 'editorjs';
 }
 
 export default Editor;
+
 
 
 
