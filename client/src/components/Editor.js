@@ -9,7 +9,8 @@ import styled from 'styled-components';
 
 const EDITOR_HOLDER_ID = 'editorjs';
 
-    const Editor = () => {
+//The course editor, this is what the user interact with when building a course:
+const Editor = () => {
     const ejInstance = useRef();
     const [editorData, setEditorData] = useState("");
     const location = useLocation();
@@ -31,7 +32,6 @@ const EDITOR_HOLDER_ID = 'editorjs';
         .then(res => res.json())
         .then(data => {
             setEditorData(data.result)
-            console.log(data); //this line to be removed soon
             initTheEditor(data.result)
         })
         }, []);
@@ -59,7 +59,6 @@ const EDITOR_HOLDER_ID = 'editorjs';
     }
 
     const saveCourse = () => {
-        console.log(editorData)
         fetch(`/api/patch-course/${courseId}`, {
         method: 'PATCH',
         body: JSON.stringify({

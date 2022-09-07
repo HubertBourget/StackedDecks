@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import LoadingLogo from "./LoadingLogo";
 import styled from "styled-components";
 
+//This component allow user to discover courses based on a specific research:
 const Discover = () => {
     const location = useLocation();
     const query = queryString.parse(location.search);
@@ -15,9 +16,7 @@ const Discover = () => {
     fetch(`/api/get-courses-from-category/${courseCategory}`)
         .then(res => res.json())
         .then(data => {
-            console.log(courseCategory);
             setCourseData(data.result);
-            console.log(courseData);
         })
     }, [])
 

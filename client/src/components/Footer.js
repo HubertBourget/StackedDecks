@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 
+//Footer at the end of the website, it display a random advice fetched from api.adviceslip.com:
 const Footer = () => {
     const [yourAdvice, setYourAdvice] = useState();
 

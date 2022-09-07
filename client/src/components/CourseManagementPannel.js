@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import PageDivider from "./PageDivider";
 import styled from "styled-components";
 
+//This is where the user can create new courses and edit his current courses:
 const CourseManagementPannel = () => {
 
     const { user, isAuthenticated } = useAuth0();

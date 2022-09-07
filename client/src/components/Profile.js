@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useAuth0 } from "@auth0/auth0-react";
 
+//This component display user information when logged in:
 const Profile = () => {
     const { user, isAuthenticated } = useAuth0();
 
@@ -19,7 +20,6 @@ const ProfilePicture = styled.img`
     margin-left: 10px;
     width: 45px;
     border-radius: 40px;
-    
     @media (max-width: 1300px) {
         display: none;
     }
@@ -28,7 +28,6 @@ const ProfilePicture = styled.img`
 const EmailH2 = styled.div`
     color: white;
     margin-left: 10px;
-    
     @media (max-width: 1300px) {
         display: none;
     }

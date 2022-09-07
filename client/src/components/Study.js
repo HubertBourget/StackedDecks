@@ -5,6 +5,7 @@ import YoutubeEmbed from "./YoutubeEmbed";
 import styled from 'styled-components';
 import LoadingLogo from "./LoadingLogo";
 
+//This component renders the course that was created with EditorJS into a non editable format for the students:
 const Study = () => {
     const location = useLocation();
     const query = queryString.parse(location.search);
@@ -13,9 +14,9 @@ const Study = () => {
 
     useEffect(() => { 
     fetch(`/api/get-course/${courseId}`)
-    .then(res => res.json())
-    .then(data => {
-        setCourseData(data.result);
+        .then(res => res.json())
+        .then(data => {
+            setCourseData(data.result);
     })
     }, []);
 
@@ -24,7 +25,6 @@ const Study = () => {
         {courseData ? 
                 <div>
                     {courseData.blocks.map((item) => {
-                        console.log(item);
                         if(item.type === "paragraph"){
                             if(item.data.text.includes("https://www.youtube.com/watch?v=")){
                                 return (<ContentDiv><YoutubeEmbed embedId={item.data.text.split("https://www.youtube.com/watch?v=")[1]} /></ContentDiv>)

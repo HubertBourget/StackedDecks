@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';
 
+//Logout button with condittionnal rendering:
 const LogoutButton = () => {
 const { logout, isAuthenticated } = useAuth0();
 
@@ -20,7 +21,6 @@ const LogButton = styled.button`
     color: #8a3004;
     font-size: large;
     font-weight: bold;
-
     padding: 10px;
     border: 1px solid #8a3004;
     margin: 5px;

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+//Just the logo with a subtle photo effect animation on a 5s loop:
 const LoadingLogo = () => {
     return ( 
         <LogoImg src={require("../img/StackedDeckLoadingLogo.gif")}/>

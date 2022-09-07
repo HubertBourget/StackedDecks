@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import LoadingLogo from "./LoadingLogo";
 
+//This component allow the user to browse through all the courses hosted on StackedDecks:
 const Catalogue = () => {
     
     const [courseData, setCourseData] = useState([]);
@@ -12,45 +13,43 @@ const Catalogue = () => {
             .then(res => res.json())
             .then(data => {
                 setCourseData(data.result);
-                console.log(courseData);
             })
     }, [])
 
     return ( 
         <div>
-                {courseData ? 
-                <CourseContainerDiv>
-                    {courseData.map((item) => {
-                        return (
-                            <CourseCardDiv>
-                                <CardImg src={require("../img/CardBorder.png")}/>
-                                <CenterDiv>
-                                    
-                                    <Link to={`/study/course?courseId=${item._id}`}><h2 id={`${item._id}`}>{item.courseData.courseName} </h2></Link>
-                                </CenterDiv>
-                            </CourseCardDiv>
-                        )
-                    })}
+            {courseData ? 
+            <CourseContainerDiv>
+                {courseData.map((item) => {
+                    return (
+                        <CourseCardDiv>
+                            <CardImg src={require("../img/CardBorder.png")}/>
+                            <CenterDiv>
+                                
+                                <Link to={`/study/course?courseId=${item._id}`}><h2 id={`${item._id}`}>{item.courseData.courseName} </h2></Link>
+                            </CenterDiv>
+                        </CourseCardDiv>
+                    )
+                })}
 
-                </CourseContainerDiv> 
-                :
-                <div>
-                    <LoadingLogo/>
-                </div>}
-                
-            </div>
+            </CourseContainerDiv> 
+            :
+            <div>
+                <LoadingLogo/>
+            </div>}
+            
+        </div>
     );
 }
 
 export default Catalogue;
 
-
 const CourseContainerDiv = styled.div`
-width: 100%;
-height: 100%;
-display: flexbox;
-flex-wrap: wrap;
-justify-content: center;
+    width: 100%;
+    height: 100%;
+    display: flexbox;
+    flex-wrap: wrap;
+    justify-content: center;
 `;
 
 const CourseCardDiv = styled.div`

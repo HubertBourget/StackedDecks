@@ -10,59 +10,14 @@ const Home = () => {
 
     return ( 
         <>
-        {isAuthenticated ?
-        <div>
+        {isAuthenticated 
+            ?
             <Notification><Link to="/cmp">Jump into the Course Management Pannel</Link></Notification>
-            <section>
-                <SleightOfHandDiv>
-                    <SleightOfHandDivLeft>
-                        <SleightOfHandInnerDiv><h2>You have a skill to share?</h2></SleightOfHandInnerDiv> 
-                        <OrElseImg src={require("../img/orElse.png")}></OrElseImg>
-                        <SleightOfHandInnerDiv><h2>There is something you've always wanted to learn?</h2></SleightOfHandInnerDiv>
-                    </SleightOfHandDivLeft>
-                    <SleightOfHandGif src={require("../img/sleightOfHand.gif")}></SleightOfHandGif>
-                </SleightOfHandDiv>
-            </section>
-            <section>
-            <PageDivider/>
-                <SectionContainerDiv>
-                    <SectionContainerSubDiv>
-                        <GrayDiv>
-                            <GrayDivH2>Take a look at the courses !</GrayDivH2>
-                            <GrayDivH4>Join our student community and start learning new skills now.</GrayDivH4>
-                            <GrayDivH4>Or create an Account and start sharing your courses immediately.</GrayDivH4>
-                        </GrayDiv>
-                        <ButtonDiv>
-                            <Link to="/catalog"><CatalogButton>Browse Catalog</CatalogButton></Link>
-                        </ButtonDiv>
-                    </SectionContainerSubDiv>
-                    
-                    <CardsImg src={require("../img/cards.png")}></CardsImg>
-                </SectionContainerDiv>
-            <PageDivider/>
-            </section>
-            <section>
-                <div class="inner">
-                    <ul class="activity">
-                    <li>
-                        <a href="/discover/category?courseCategory=Yoga">Yoga</a>
-                    </li>
-                    <li>
-                        <a href="/discover/category?courseCategory=Music">Music</a>
-                    </li>
-                    <li>
-                        <a href="/discover/category?courseCategory=Calligraphy">Calligraphy</a>
-                    </li>
-                    <li>
-                        <a href="/discover/category?courseCategory=Programming">Programming</a>
-                    </li>
-                    </ul>
-                </div>
-            </section>
-        </div>
-        :
-        <div>
+            :
             <Notification>If you desire to create courses with this App, you need to create an account or to authenticate.</Notification>
+        }
+        <div>
+            
             <section>
                 <SleightOfHandDiv>
                     <SleightOfHandDivLeft>
@@ -70,11 +25,6 @@ const Home = () => {
                         <OrElseImg src={require("../img/orElse.png")}></OrElseImg>
                         <SleightOfHandInnerDiv><h2>There is something you've always wanted to learn?</h2></SleightOfHandInnerDiv>
                     </SleightOfHandDivLeft>
-                    <OverlayDiv>
-                        <SleightOfHandInnerDiv><h2>You have a skill to share?</h2></SleightOfHandInnerDiv>
-                        <OrElseImg src={require("../img/orElse.png")}></OrElseImg>
-                        <SleightOfHandInnerDiv><h2>There is something you've always wanted to learn?</h2></SleightOfHandInnerDiv>
-                    </OverlayDiv>
                     <SleightOfHandGif src={require("../img/sleightOfHand.gif")}></SleightOfHandGif>
                 </SleightOfHandDiv>
             </section>
@@ -96,7 +46,7 @@ const Home = () => {
                 </SectionContainerDiv>
             <PageDivider/>
             </section>
-            <section>
+             <section> {/*Those special buttons are made with .scss, one can find the code for those shiny buttons under Home.scss */}
                 <div class="inner">
                     <ul class="activity">
                     <li>
@@ -115,7 +65,6 @@ const Home = () => {
                 </div>
             </section>
         </div>
-        }
         </>
     );
 }

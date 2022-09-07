@@ -3,6 +3,8 @@ import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import Profile from "./Profile";
 
+//This header has an invisible background that does not interfere with the gradient background from the body of the app.
+//Clicking the logo will allow user to go back to the Home page from anywhere:
 const Header =() => {
     return(
         <ButtonContainerDiv>
