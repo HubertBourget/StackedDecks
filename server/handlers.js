@@ -67,6 +67,26 @@ const getCoursesFromOwner = async (req, res) => {
     }
 }
 
+const getCoursesFromCategory = async (req, res) => {
+        const client =  new MongoClient(MONGO_URI, options);
+    try{
+        const courseCategory = req.params.courseCategory;
+        // ---- Client connected ---- //
+        client.connect();
+        
+        const db = client.db('db-name');
+        // find item that are matching with id
+        const result = await db.collection("courses").find({ "courseData.courseCategory": courseCategory }).toArray(); 
+        res.status(200).json({ status: 200, result: result })
+        // ---- Client disconnected ---- // 
+        client.close();
+    }
+    catch (e){
+        // else if error -->
+        res.status(400).json({ status: 400, message: e.message })
+    }
+}
+
 const getAllCourses = async (req, res) => {
         const client =  new MongoClient(MONGO_URI, options);
     try{
@@ -131,6 +151,7 @@ module.exports = {
     postCourse,
     getUsers,
     getCoursesFromOwner,
+    getCoursesFromCategory,
     getAllCourses,
     getCourse,
     patchCourse

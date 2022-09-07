@@ -9,7 +9,8 @@ import Home from './components/Home';
 import Footer from './components/Footer';
 import CourseManagementPannel from './components/CourseManagementPannel';
 import Catalog from "./components/Catalog";
-import Study from "./components/Study"
+import Study from "./components/Study";
+import Discover from './components/Discover';
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/editor/:courseId" element={<Editor />} />
           <Route path="/catalog" element={<Catalog/>}/>
           <Route path="/study/:courseId" element={<Study/>}/>
+          <Route path="/discover/:courseCategory" element={<Discover/>}/>
         </Routes>
       </Main>
       <Footer />

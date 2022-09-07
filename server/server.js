@@ -6,6 +6,7 @@ const {
     postCourse,
     getUsers,
     getCoursesFromOwner,
+    getCoursesFromCategory,
     getAllCourses,
     getCourse,
     patchCourse
@@ -16,6 +17,7 @@ express()
     .get("/api/get-users", getUsers)
     .get("/api/get-all-courses", getAllCourses)
     .get("/api/get-courses/:courseOwner", getCoursesFromOwner)
+    .get("/api/get-courses-from-category/:courseCategory", getCoursesFromCategory)
     .get("/api/get-course/:courseId", getCourse)
     .post("/api/post-course", postCourse)
     .patch("/api/patch-course/:courseId", patchCourse)

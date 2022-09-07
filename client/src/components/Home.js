@@ -45,16 +45,16 @@ const Home = () => {
                 <div class="inner">
                     <ul class="activity">
                     <li>
-                        <a href="#">Yoga</a>
+                        <a href="/discover/category?courseCategory=Yoga">Yoga</a>
                     </li>
                     <li>
-                        <a href="#">Music</a>
+                        <a href="/discover/category?courseCategory=Music">Music</a>
                     </li>
                     <li>
-                        <a href="#">Calligraphy</a>
+                        <a href="/discover/category?courseCategory=Calligraphy">Calligraphy</a>
                     </li>
                     <li>
-                        <a href="#">Programming</a>
+                        <a href="/discover/category?courseCategory=Programming">Programming</a>
                     </li>
                     </ul>
                 </div>
@@ -100,16 +100,16 @@ const Home = () => {
                 <div class="inner">
                     <ul class="activity">
                     <li>
-                        <a href="#">Yoga</a>
+                        <a href="/discover/category?courseCategory=Yoga">Yoga</a>
                     </li>
                     <li>
-                        <a href="#">Music</a>
+                        <a href="/discover/category?courseCategory=Music">Music</a>
                     </li>
                     <li>
-                        <a href="#">Calligraphy</a>
+                        <a href="/discover/category?courseCategory=Calligraphy">Calligraphy</a>
                     </li>
                     <li>
-                        <a href="#">Programming</a>
+                        <a href="/discover/category?courseCategory=Programming">Programming</a>
                     </li>
                     </ul>
                 </div>
