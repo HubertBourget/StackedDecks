@@ -77,40 +77,26 @@ const EDITOR_HOLDER_ID = 'editorjs';
     return (
         <>
         <div id={EDITOR_HOLDER_ID}> </div>
-        <button onClick={saveCourse}>Save</button>
+        <SaveButton onClick={saveCourse}>Save</SaveButton>
         </>
     );
 }
 
 export default Editor;
 
+const SaveButton = styled.button`
+    background-color: transparent;
+    color: #8a3004;
+    font-size: large;
+    font-weight: bold;
 
-
-
-
-//this was the DEFAULT_INITIA_DATA object:
-// {
-//     "time": new Date().getTime(),
-//     "blocks": [
-//     {
-//         "type": "header",
-//         "data": {
-//         "text": "How is your course named?",
-//         "level": 1
-//         }
-//     },
-//     ]
-// }
-
-
-
-
-//premiere tentative fetch initial data
-// const [courseData, setCourseData] = useState('');
-// let query = useQuery();
-// fetch(`/api/get-course/${query.get("_id")}`)
-// .then(res => res.json())
-// .then(data => {
-//     setCourseData(data.result)
-//     console.log(data);
-// })
+    padding: 10px;
+    border: 1px solid #8a3004;
+    margin: 5px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    &:hover {
+        background-color: #8a3004;
+        color:black;
+    }
+`;

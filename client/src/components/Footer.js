@@ -14,7 +14,7 @@ const Footer = () => {
 
     return ( 
         <>
-        <FooterDiv><div>© STACKED DECK 2022 ©</div>&nbsp;<div>{yourAdvice}</div></FooterDiv>
+        <FooterDiv><div>© STACKED DECKS 2022 ©</div>&nbsp;<div>{yourAdvice}</div></FooterDiv>
         </>
     );
 }

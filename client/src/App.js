@@ -8,7 +8,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Footer from './components/Footer';
 import CourseManagementPannel from './components/CourseManagementPannel';
-import Catalogue from "./components/Catalogue";
+import Catalog from "./components/Catalog";
 import Study from "./components/Study"
 
 
@@ -26,7 +26,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/cmp" element={<CourseManagementPannel />} />
           <Route path="/editor/:courseId" element={<Editor />} />
-          <Route path="/catalogue" element={<Catalogue/>}/>
+          <Route path="/catalog" element={<Catalog/>}/>
           <Route path="/study/:courseId" element={<Study/>}/>
         </Routes>
       </Main>
@@ -35,17 +35,9 @@ const App = () => {
   );
 }
 const Main = styled.div`
-  height:200vh;
+  height:100%;
+  min-height: 85vh;
   background-image: linear-gradient(to bottom right, #000000, #292929);
 `;
 
 export default App;
-
-
-{/* <>
-      <LoginButton />
-      <LogoutButton />
-      <Profile />
-      <Advice/>
-      <Editor />
-    </> */}

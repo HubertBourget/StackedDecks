@@ -8,11 +8,12 @@ export default createGlobalStyle`
     margin:0;
     padding:0;
     box-sizing: border-box;
+    
 }
 body {
     padding: 0;
     margin: 0;
-    background-color: #DCE6F2;
+    background-color: black;
 }
 root{
     padding: 0;

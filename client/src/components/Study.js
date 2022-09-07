@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import YoutubeEmbed from "./YoutubeEmbed";
 import styled from 'styled-components';
-import Footer from './Footer';
+import LoadingLogo from "./LoadingLogo";
 
 const Study = () => {
     const location = useLocation();
@@ -38,7 +38,7 @@ const Study = () => {
                 </div> 
                 :
                 <div>
-                    Loading...
+                    <LoadingLogo/>
                 </div>}
         </>
     );
